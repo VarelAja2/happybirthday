@@ -35,11 +35,14 @@ function showBalloons() {
 function popBalloon(balloon) {
   balloon.remove();
 
+  if (typeof confetti === 'function') {
   confetti({
     particleCount: 120,
     spread: 80,
     origin: { y: 0.6 }
   });
+}
+
 
   if (document.querySelectorAll('.balloon').length === 0) {
     showMessage();
@@ -59,10 +62,17 @@ function showMessage() {
     flash.classList.remove('active');
 
     document.getElementById('message').classList.remove('hidden');
-  document.getElementById('cakeSection').classList.remove('hidden');
-  document.getElementById('music').play();
-}, 800);
+    document.getElementById('cakeSection').classList.remove('hidden');
+
+    const music = document.getElementById('music');
+    if (music) {
+      music.play().catch(() => {
+        console.log('Autoplay blocked, user interaction required');
+      });
+    }
+  }, 800);
 }
+
 
 
 function randomColor() {
