@@ -1,226 +1,251 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&family=Playfair+Display:wght@500;600;700&display=swap');
+
+/* ================= RESET ================= */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Segoe UI', sans-serif;
 }
 
+/* ================= BODY ================= */
 body {
-  background: linear-gradient(135deg, #ffb6c1, #ffe4e1);
+  font-family: 'Poppins', sans-serif;
+  background: radial-gradient(circle at top, #ffe0ea, #ffb6c1);
   height: 100vh;
   overflow: hidden;
+  color: #333;
 }
 
-.container {
-  height: 100vh;
+/* ================= CAMERA ================= */
+#camera {
+  position: fixed;
+  inset: 0;
+  transform-origin: center;
+  transition: transform 1.2s cubic-bezier(.4,0,.2,1);
+}
+
+/* ================= SCENE ================= */
+.scene {
+  position: fixed;
+  inset: 0;
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
   text-align: center;
+  padding: 24px;
+  opacity: 0;
+  pointer-events: none;
+  transform: scale(0.96);
+  transition: opacity 0.9s ease, transform 0.9s ease;
 }
 
-.hidden {
-  display: none;
+.scene.active {
+  opacity: 1;
+  pointer-events: auto;
+  transform: scale(1);
 }
 
+/* ================= TEXT ================= */
+h1, h2, h3 {
+  font-family: 'Playfair Display', serif;
+}
+
+h1 { font-size: 32px; margin-bottom: 12px; }
+h2 { font-size: 24px; margin-bottom: 10px; }
+p { font-size: 15px; line-height: 1.7; max-width: 480px; margin: 0 auto; }
+
+/* ================= BUTTON ================= */
 button {
-  margin-top: 20px;
-  padding: 12px 24px;
+  margin-top: 26px;
+  padding: 14px 36px;
+  border-radius: 999px;
   border: none;
-  border-radius: 30px;
-  background: #ff4d6d;
+  background: linear-gradient(135deg, #ff4d6d, #ff85a1);
   color: white;
-  font-size: 16px;
+  font-size: 15px;
+  font-weight: 500;
   cursor: pointer;
+  box-shadow: 0 10px 30px rgba(255, 77, 109, 0.45);
+  transition: all 0.35s ease;
 }
 
 button:hover {
-  background: #ff2f5b;
+  transform: translateY(-4px) scale(1.06);
+  box-shadow: 0 16px 40px rgba(255, 77, 109, 0.55);
 }
 
+/* ================= COUNTDOWN ================= */
 #countText {
-  font-size: 80px;
+  font-size: 96px;
+  color: #ff4d6d;
+  text-shadow:
+    0 12px 30px rgba(255, 77, 109, 0.55),
+    0 0 40px rgba(255, 150, 180, 0.8);
 }
 
-.balloon-area {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-}
-
+/* ================= BALLOON ================= */
 .balloon {
-  width: 60px;
-  height: 80px;
-  background: red;
+  width: 56px;
+  height: 72px;
   border-radius: 50%;
   position: absolute;
-  bottom: -100px;
+  bottom: -90px;
   animation: float 6s linear forwards;
-  cursor: pointer;
+  box-shadow: inset -4px -8px rgba(255,255,255,0.4);
 }
 
 @keyframes float {
-  to {
-    transform: translateY(-120vh);
-  }
+  to { transform: translateY(-140vh); }
 }
 
-/* Efek getar layar */
-.shake {
-  animation: shake 0.4s ease;
-}
-
-@keyframes shake {
-  0% { transform: translate(0, 0) scale(1); }
-  20% { transform: translate(-5px, 5px) scale(1.03); }
-  40% { transform: translate(5px, -5px) scale(1.03); }
-  60% { transform: translate(-5px, 5px) scale(1.03); }
-  80% { transform: translate(5px, -5px) scale(1.03); }
-  100% { transform: translate(0, 0) scale(1); }
-}
-
-/* Flash putih singkat */
-.flash {
-  position: fixed;
-  inset: 0;
-  background: white;
-  opacity: 0;
-  pointer-events: none;
-}
-
-.flash.active {
-  animation: flash 0.4s ease;
-}
-
-@keyframes flash {
-  0% { opacity: 0; }
-  40% { opacity: 0.8; }
-  100% { opacity: 0; }
-}
-
-.cake-container {
-  position: absolute;
-  bottom: 80px;
-  width: 100%;
-  text-align: center;
-}
-
+/* ================= CAKE ================= */
 .cake {
-  width: 200px;
-  height: 120px;
-  background: #ffcad4;
-  border-radius: 0 0 20px 20px;
-  margin: 0 auto;
+  width: 180px;
+  height: 110px;
+  background: linear-gradient(#ffd6e0, #ffafcc);
+  border-radius: 0 0 22px 22px;
+  margin: auto;
+  box-shadow: 0 18px 40px rgba(255, 77, 109, 0.35);
   position: relative;
-  box-shadow: inset 0 -10px #ffafcc;
+  z-index: 1;
 }
 
+/* ================= CANDLE ================= */
 .candle {
-  width: 12px;
+  width: 20px;
   height: 40px;
-  background: white;
+  background: linear-gradient(#ffe0ea, #ff4d6d);
+  border-radius: 4px;
   position: absolute;
   top: -40px;
   left: 50%;
   transform: translateX(-50%);
   cursor: pointer;
+  z-index: 2;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
 }
 
+/* ================= FLAME ================= */
 .flame {
   width: 14px;
-  height: 20px;
-  background: orange;
-  border-radius: 50% 50% 50% 50%;
+  height: 22px;
+  background: radial-gradient(circle, #ffdd55, #ff8800);
+  border-radius: 50%;
   position: absolute;
-  top: -18px;
+  top: -22px;
   left: 50%;
   transform: translateX(-50%);
-  animation: flicker 0.15s infinite;
+  opacity: 1;
+  display: block;
+  pointer-events: none;
+  z-index: 3;
 }
 
-@keyframes flicker {
-  0% { transform: translateX(-50%) scale(1); }
-  50% { transform: translateX(-50%) scale(1.1); }
-  100% { transform: translateX(-50%) scale(1); }
-}
-
-.hint {
-  margin-top: 12px;
-  font-size: 16px;
-  color: #333;
-}
-
-.typing-container {
-  position: absolute;
-  bottom: 30px;
-  width: 100%;
-  padding: 0 20px;
-  text-align: center;
-}
-
+/* ================= TYPING ================= */
 #typingText {
-  font-size: 16px;
-  color: #333;
-  max-width: 500px;
-  margin: 0 auto;
-  line-height: 1.6;
+  font-family: 'Playfair Display', serif;
+  font-size: 22px;
+  line-height: 1.9;
+  max-width: 540px;
+  margin: auto;
+  text-align: center;
   white-space: pre-line;
 }
 
+/* ================= GALLERY ================= */
 .gallery {
-  position: absolute;
-  top: 80px;
-  width: 100%;
-  text-align: center;
+  position: fixed;
+  inset: 0;
+  padding-top: 80px;
+  background:
+    radial-gradient(circle at top, rgba(255,255,255,0.55), transparent 60%);
 }
 
 .gallery h3 {
-  margin-bottom: 16px;
-  font-size: 18px;
-  color: #333;
+  font-size: 26px;
+  margin-bottom: 28px;
+  color: #ff4d6d;
+  text-shadow: 0 6px 18px rgba(255,77,109,0.35);
 }
 
 .gallery-track {
-  display: flex;
-  gap: 16px;
-  overflow-x: auto;
-  padding: 0 20px;
-  scroll-snap-type: x mandatory;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(120px, 1fr));
+  gap: 18px;
+  padding: 0 28px;
+  max-width: 720px;
+  margin: 0 auto;
 }
 
 .gallery-track img {
-  width: 200px;
-  height: 260px;
+  width: 100%;
+  aspect-ratio: 3/4;
   object-fit: cover;
-  border-radius: 16px;
-  flex-shrink: 0;
-  scroll-snap-align: center;
-  animation: fadeSlide 0.8s ease forwards;
+  border-radius: 20px;
+  box-shadow:
+    0 18px 40px rgba(0,0,0,0.18),
+    0 0 0 1px rgba(255,255,255,0.4) inset;
+  transform: scale(0.98);
+  animation: galleryFloat 6s ease-in-out infinite;
 }
 
-@keyframes fadeSlide {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+.gallery-track img:nth-child(odd) {
+  animation-delay: -3s;
+}
+
+@keyframes galleryFloat {
+  0% { transform: translateY(0) scale(0.98); }
+  50% { transform: translateY(-12px) scale(1); }
+  100% { transform: translateY(0) scale(0.98); }
+}
+
+/* ================= FINAL / CLOSING ================= */
+#scene-closing {
+  background:
+    radial-gradient(circle at center, #fff0f6 0%, #ffafcc 55%, #ff85a1 100%);
 }
 
 .closing {
-  position: absolute;
-  bottom: 10px;
-  width: 100%;
+  font-family: 'Playfair Display', serif;
+  font-size: 30px;
+  line-height: 1.6;
+  max-width: 560px;
+  color: #ff2f68;
   text-align: center;
-  font-size: 15px;
-  color: #444;
-  opacity: 0;
-  animation: fadeIn 1.2s ease forwards;
+  text-shadow:
+    0 0 25px rgba(255, 90, 130, 0.7),
+    0 0 60px rgba(255, 150, 180, 0.6);
+  animation: closingPulse 3s ease-in-out infinite;
+  position: relative;
 }
 
-@keyframes fadeIn {
-  to { opacity: 1; }
+.closing::before {
+  content: '';
+  position: absolute;
+  inset: -60px;
+  background: radial-gradient(circle, rgba(255,255,255,0.8), transparent 70%);
+  z-index: -1;
+  animation: aura 4s ease-in-out infinite;
+}
+
+@keyframes closingPulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.04); }
+  100% { transform: scale(1); }
+}
+
+@keyframes aura {
+  0% { opacity: 0.6; }
+  50% { opacity: 1; }
+  100% { opacity: 0.6; }
+}
+
+/* ================= MOBILE ================= */
+@media (max-width: 480px) {
+  h1 { font-size: 26px; }
+  h2 { font-size: 20px; }
+  #countText { font-size: 72px; }
+  .closing { font-size: 24px; }
 }
