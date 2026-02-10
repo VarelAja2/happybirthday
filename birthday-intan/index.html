@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Untuk Intan Nur Azizah 🎂</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+
+  <!-- Confetti -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+</head>
+<body>
+<div class="flash" id="flash"></div>
+
+<div class="container" id="intro">
+  <h1>Ada sesuatu buat kamu 💖</h1>
+  <button onclick="startSurprise()">Klik di sini</button>
+</div>
+
+<div class="container hidden" id="countdown">
+  <h1 id="countText">3</h1>
+</div>
+
+<div class="balloon-area hidden" id="balloons"></div>
+
+<div class="container hidden" id="message">
+  <h1>🎉 Selamat Ulang Tahun 🎉</h1>
+  <h2>Intan Nur Azizah</h2>
+  <p>
+    Semoga hari ini penuh senyum,  
+    penuh tawa, dan penuh hal baik  
+    seperti kamu 🤍
+  </p>
+</div>
+
+<div class="cake-container hidden" id="cakeSection">
+  <div class="cake">
+    <div class="candle" onclick="blowCandle()">
+      <div class="flame" id="flame"></div>
+    </div>
+  </div>
+  <p class="hint">Tiup lilinnya ya 🎂</p>
+</div>
+<div class="typing-container hidden" id="typingSection">
+  <p id="typingText"></p>
+</div>
+
+<div class="gallery hidden" id="gallerySection">
+  <h3>Kenangan Kita 🤍</h3>
+
+  <div class="gallery-track">
+    <img src="images/foto1.jpg" />
+    <img src="images/foto2.jpg" />
+    <img src="images/foto3.jpg" />
+    <img src="images/foto4.jpg" />
+  </div>
+</div>
+
+<div class="closing hidden" id="closingText">
+  Selamat ulang tahun, Intan. Aku selalu di sini 🤍
+</div>
+
+
+
+<audio id="music" src="music.mp3"></audio>
+
+<script src="script.js"></script>
+</body>
+</html>

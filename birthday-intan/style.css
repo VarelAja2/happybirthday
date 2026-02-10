@@ -1,0 +1,226 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+body {
+  background: linear-gradient(135deg, #ffb6c1, #ffe4e1);
+  height: 100vh;
+  overflow: hidden;
+}
+
+.container {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.hidden {
+  display: none;
+}
+
+button {
+  margin-top: 20px;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 30px;
+  background: #ff4d6d;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #ff2f5b;
+}
+
+#countText {
+  font-size: 80px;
+}
+
+.balloon-area {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+.balloon {
+  width: 60px;
+  height: 80px;
+  background: red;
+  border-radius: 50%;
+  position: absolute;
+  bottom: -100px;
+  animation: float 6s linear forwards;
+  cursor: pointer;
+}
+
+@keyframes float {
+  to {
+    transform: translateY(-120vh);
+  }
+}
+
+/* Efek getar layar */
+.shake {
+  animation: shake 0.4s ease;
+}
+
+@keyframes shake {
+  0% { transform: translate(0, 0) scale(1); }
+  20% { transform: translate(-5px, 5px) scale(1.03); }
+  40% { transform: translate(5px, -5px) scale(1.03); }
+  60% { transform: translate(-5px, 5px) scale(1.03); }
+  80% { transform: translate(5px, -5px) scale(1.03); }
+  100% { transform: translate(0, 0) scale(1); }
+}
+
+/* Flash putih singkat */
+.flash {
+  position: fixed;
+  inset: 0;
+  background: white;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.flash.active {
+  animation: flash 0.4s ease;
+}
+
+@keyframes flash {
+  0% { opacity: 0; }
+  40% { opacity: 0.8; }
+  100% { opacity: 0; }
+}
+
+.cake-container {
+  position: absolute;
+  bottom: 80px;
+  width: 100%;
+  text-align: center;
+}
+
+.cake {
+  width: 200px;
+  height: 120px;
+  background: #ffcad4;
+  border-radius: 0 0 20px 20px;
+  margin: 0 auto;
+  position: relative;
+  box-shadow: inset 0 -10px #ffafcc;
+}
+
+.candle {
+  width: 12px;
+  height: 40px;
+  background: white;
+  position: absolute;
+  top: -40px;
+  left: 50%;
+  transform: translateX(-50%);
+  cursor: pointer;
+}
+
+.flame {
+  width: 14px;
+  height: 20px;
+  background: orange;
+  border-radius: 50% 50% 50% 50%;
+  position: absolute;
+  top: -18px;
+  left: 50%;
+  transform: translateX(-50%);
+  animation: flicker 0.15s infinite;
+}
+
+@keyframes flicker {
+  0% { transform: translateX(-50%) scale(1); }
+  50% { transform: translateX(-50%) scale(1.1); }
+  100% { transform: translateX(-50%) scale(1); }
+}
+
+.hint {
+  margin-top: 12px;
+  font-size: 16px;
+  color: #333;
+}
+
+.typing-container {
+  position: absolute;
+  bottom: 30px;
+  width: 100%;
+  padding: 0 20px;
+  text-align: center;
+}
+
+#typingText {
+  font-size: 16px;
+  color: #333;
+  max-width: 500px;
+  margin: 0 auto;
+  line-height: 1.6;
+  white-space: pre-line;
+}
+
+.gallery {
+  position: absolute;
+  top: 80px;
+  width: 100%;
+  text-align: center;
+}
+
+.gallery h3 {
+  margin-bottom: 16px;
+  font-size: 18px;
+  color: #333;
+}
+
+.gallery-track {
+  display: flex;
+  gap: 16px;
+  overflow-x: auto;
+  padding: 0 20px;
+  scroll-snap-type: x mandatory;
+}
+
+.gallery-track img {
+  width: 200px;
+  height: 260px;
+  object-fit: cover;
+  border-radius: 16px;
+  flex-shrink: 0;
+  scroll-snap-align: center;
+  animation: fadeSlide 0.8s ease forwards;
+}
+
+@keyframes fadeSlide {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.closing {
+  position: absolute;
+  bottom: 10px;
+  width: 100%;
+  text-align: center;
+  font-size: 15px;
+  color: #444;
+  opacity: 0;
+  animation: fadeIn 1.2s ease forwards;
+}
+
+@keyframes fadeIn {
+  to { opacity: 1; }
+}
